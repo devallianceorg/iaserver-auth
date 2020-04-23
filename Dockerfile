@@ -1,4 +1,4 @@
-FROM devalliance/nginx-php-fpm:7.2
+FROM devalliance/nginx-php-fpm:7.1
 
 # Configure nginx
 COPY nginx-php-fpm/nginx/nginx.conf /etc/nginx/nginx.conf
