@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class HomeCtrl extends Controller
 {
     public function index(Request $request) {
-        $service= 'auth-api';
+        $service= 'iaserver-auth';
         $status= 'online';
 
         $motor= app()->version();
@@ -22,6 +22,6 @@ class HomeCtrl extends Controller
             'user' => User::find($kong_id)->first()
         ];
         */
-        return compact('service','status','motor','server_time');
+        return compact('service','status','server_time');
     }
 }

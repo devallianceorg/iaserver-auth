@@ -12,7 +12,7 @@ class PermissionCrud extends Controller
     }
 
     public function all() {
-        return Permission::all();
+        return Permission::paginate();
     }
 
     public function add() {

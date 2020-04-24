@@ -20,7 +20,7 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
      *
      * @var array
      */
-    protected $with= ['Roles.Permissions'];
+    protected $with= ['roles.permissions'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -37,6 +37,9 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
     {
         $roles =  $this->roles->pluck('name');
         $permisos =  $this->getPermissionsViaRoles()->pluck('name');
+
+	// Oculto la relacion del modelo 
+	$this->makeHidden('roles');
 
         return compact('roles','permisos');
     }

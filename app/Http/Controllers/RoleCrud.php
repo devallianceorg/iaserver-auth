@@ -13,7 +13,7 @@ class RoleCrud extends Controller
     }
 
     public function all() {
-        return Role::all();
+        return Role::paginate();
     }
 
     public function add() {

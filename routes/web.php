@@ -22,20 +22,10 @@ $router->group(['middleware' => 'auth:api'], function($router)
 	$router->get('/me', 'AuthController@me');
 });
 
-$router->group(['prefix' => 'users'], function($router)
-{
-	$router->get('/{user_id}', 'UsersCrud@show');
-
-	// ABM Usuarios
-	$router->get('/', 'UsersCrud@all');
-	$router->post('/', 'UsersCrud@add');
-	$router->put('/', 'UsersCrud@update');
-	$router->delete('/', 'UsersCrud@delete');
-});
 
 // ACL ADMIN , GESTION SOLO POR ROL:SUPERADMIN
 // El permiso "gestion_acl" deberia ingresar a esta ruta
-$router->get('/pwd', 'AuthController@generateHash');
+//$router->get('/pwd', 'AuthController@generateHash');
 $router->group(['prefix' => 'acl','middleware' => ['auth:api']], function($router)
 {
 	$router->get('/hash', 'AuthController@generateHash');

@@ -37,7 +37,7 @@ class Authenticate
     {
         if ($this->auth->guard($guard)->guest()) {
             $code = 403;
-            $error = 'No autorizado';
+            $error = 'No autorizado, verifique su token';
 
             $output = compact('error','code');
             return response()->json($output,$code);
