@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Roles;
 use App\User;
 use Illuminate\Support\Facades\Input;
-use Spatie\Permission\Models\Role;
 
 class RoleCrud extends Controller
 {
@@ -13,24 +13,24 @@ class RoleCrud extends Controller
     }
 
     public function all() {
-        return Role::paginate();
+        return Roles::paginate();
     }
 
     public function add() {
         $name = Input::get('name');
-        $role = Role::create(['name' => $name]);
+        $role = Roles::create(['name' => $name]);
         return $role;
     }
 
     public function delete() {
         $id = Input::get('id');
-        $item = Role::findById($id);
+        $item = Roles::findById($id);
         $item->delete();
         return $item;
     }
 
     public function view($name) {
-        $role = Role::findByName($name);
+        $role = Roles::findByName($name);
         $permission = $role->permissions;
         return $role;
     }
@@ -41,7 +41,7 @@ class RoleCrud extends Controller
 
         $permission = Input::get('permission');
 
-        $role = Role::findByName($name);
+        $role = Roles::findByName($name);
 
         switch ($mode)
         {
@@ -59,7 +59,7 @@ class RoleCrud extends Controller
     }
 
     public function roleToUser($role,$userId) {
-        $role = Role::findByName($role);
+        $role = Roles::findByName($role);
         $user = User::where('id',$userId)->first();
         $user->assignRole($role);
 

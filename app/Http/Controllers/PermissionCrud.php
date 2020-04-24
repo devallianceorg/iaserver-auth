@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Permisos;
 use Illuminate\Support\Facades\Input;
-use Spatie\Permission\Models\Permission;
 
 class PermissionCrud extends Controller
 {
@@ -12,18 +12,18 @@ class PermissionCrud extends Controller
     }
 
     public function all() {
-        return Permission::paginate();
+        return Permisos::paginate();
     }
 
     public function add() {
         $name = Input::get('name');
-        $item = Permission::create(['name' => $name]);
+        $item = Permisos::create(['name' => $name]);
         return $item;
     }
 
     public function delete() {
         $id = Input::get('id');
-        $item = Permission::findById($id);
+        $item = Permisos::findById($id);
         $item->delete();
         return $item;
     }

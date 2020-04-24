@@ -22,6 +22,9 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
      */
     protected $with= ['roles.permissions'];
 
+    // SQLServer datetime fix
+    protected $dateFormat = 'Y-m-d H:i:s';
+
     /**
      * The attributes excluded from the model's JSON form.
      *
@@ -38,8 +41,8 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
         $roles =  $this->roles->pluck('name');
         $permisos =  $this->getPermissionsViaRoles()->pluck('name');
 
-	// Oculto la relacion del modelo 
-	$this->makeHidden('roles');
+        // Oculto la relacion del modelo
+        $this->makeHidden('roles');
 
         return compact('roles','permisos');
     }
